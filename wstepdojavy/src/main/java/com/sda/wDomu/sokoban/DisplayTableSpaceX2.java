@@ -22,7 +22,7 @@ public class DisplayTableSpaceX2 {
                     System.out.print(frame_side);
                 } else if (i % 2 == 1) {
                     System.out.print(" ");
-                } else System.out.print(Symbols.getSymbolByNumber(tab[(j - 1) / 2][(i - 1) / 4]));
+                } else System.out.print(Symbol.getSymbolByNumber(tab[(j - 1) / 2][(i - 1) / 4]));
             }
             System.out.println();
         }

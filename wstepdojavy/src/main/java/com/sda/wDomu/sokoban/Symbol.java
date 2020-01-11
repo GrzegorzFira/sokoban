@@ -1,6 +1,6 @@
 package com.sda.wDomu.sokoban;
 
-public enum Symbols {
+public enum Symbol {
     EMPTY( ' '),
     WALL( 'X'),
     DESTINATION( '·'),
@@ -12,13 +12,13 @@ public enum Symbols {
 
     private char symbolChar;
 
-    Symbols( char symbolChar) {
+    Symbol(char symbolChar) {
         this.symbolChar = symbolChar;
     }
 
     public static char getSymbolByNumber(int number) {
         char c = '?';
-        for (Symbols symbols : Symbols.values()) {
+        for (Symbol symbols : Symbol.values()) {
             if (symbols.ordinal() == number) {
                 c = symbols.symbolChar;
             }
