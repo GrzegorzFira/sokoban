@@ -58,7 +58,7 @@ class Board {
 
 
     void moveRight() {
-        levelTab[row][column] = 0;
+        levelTab[row][column] -=4;
         if (levelTab[row][column + 1] == 0 || levelTab[row][column + 1] == 2) {
             column++;
             numberOfMoves++;
@@ -80,7 +80,7 @@ class Board {
 
 
     void moveLeft() {
-        levelTab[row][column] = 0;
+        levelTab[row][column] -=4;
         if (levelTab[row][column - 1] == 0 || levelTab[row][column - 1] == 2) {
             column--;
             numberOfMoves++;
@@ -101,7 +101,7 @@ class Board {
     }
 
     void moveUp() {
-        levelTab[row][column] = 0;
+        levelTab[row][column] -=4;
         if (levelTab[row - 1][column] == 0 || levelTab[row - 1][column] == 2) {
             row--;
             numberOfMoves++;
@@ -122,7 +122,7 @@ class Board {
     }
 
     void moveDown() {
-        levelTab[row][column] = 0;
+        levelTab[row][column] -=4;
         if (levelTab[row + 1][column] == 0 || levelTab[row + 1][column] == 2) {
             row++;
             numberOfMoves++;
