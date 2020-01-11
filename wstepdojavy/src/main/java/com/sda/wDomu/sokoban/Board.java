@@ -39,6 +39,23 @@ class Board {
         return levelTab;
     }
 
+    void displayTable() {
+        for (int[] ints : levelTab) {
+            for (int i = 0; i < levelTab[0].length; i++) {
+                System.out.print(" " + Symbol.getSymbolByNumber(ints[i]).getSymbolChar());
+            }
+            System.out.println();
+        }
+    }
+
+    void displayInfo() {
+        System.out.println("Level: "+levelNumber);
+        System.out.println("Move: "+numberOfMoves+"");
+        System.out.println("Goals: "+numberOfGoals+"\n");
+        System.out.println("Enter Q to quit");
+        System.out.println("Enter backspace key to return");
+        System.out.println("Enter W, A, S, D  to to move up, left, down and right, respectively");
+    }
 
     void findPropertiesOfTable() {
         int number = 0;

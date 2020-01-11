@@ -5,23 +5,6 @@ import java.util.concurrent.TimeUnit;
 
 public class Main {
 
-    static void displayTable(int tab[][]) {
-        for (int[] ints : tab) {
-            for (int i = 0; i < tab[0].length; i++) {
-                    System.out.print(" " + Symbol.getSymbolByNumber(ints[i]).getSymbolChar());
-            }
-           System.out.println();
-        }
-    }
-
-    static void displayInfo(int level, int move, int goals ) {
-        System.out.println("Level: "+level);
-        System.out.println("Move: "+move+"");
-        System.out.println("Goals: "+goals+"\n");
-        System.out.println("Enter Q to quit");
-        System.out.println("Enter backspace key to return");
-        System.out.println("Enter W, A, S, D  to to move up, left, down and right, respectively");
-    }
 
     public static void main(String[] args) {
 
@@ -30,11 +13,9 @@ public class Main {
 
         char inputChar;
         Scanner scanner = new Scanner(System.in);
-
-
         do {
-            displayTable(board.getLevelTab());
-            displayInfo(board.getLevelNumber(), board.getNumberOfMoves(), board.getNumberOfGoals());
+            board.displayTable();
+            board.displayInfo();
 
             inputChar = scanner.next().charAt(0);
             switch (inputChar) {
@@ -60,18 +41,23 @@ public class Main {
                     board.moveDown();
                 }
                 break;
-            }
 
-
-            if (inputChar == 'R' || inputChar == 'r') {
-                board.setLevelTabByLevel(board.getLevelNumber());
-                board.findPropertiesOfTable();
+                case 'r':
+                case 'R': {
+                    board.setLevelTabByLevel(board.getLevelNumber());
+                    board.findPropertiesOfTable();
+                }
+                break;
+                default: {
+                    System.out.println("Try again");
+                }
             }
 
             if (board.getNumberOfGoals() == 0) {
-                displayTable(board.getLevelTab());
-                displayInfo(board.getLevelNumber(), board.getNumberOfMoves(), board.getNumberOfGoals());
+                board.displayTable();
+                board.displayInfo();
                 TimeUnit.SECONDS.toSeconds(1);
+
                 System.out.println("NEXT LEVEL");
                 board.setLevelNumber(board.getLevelNumber() + 1);
                 board.setLevelTabByLevel(board.getLevelNumber());
@@ -81,8 +67,6 @@ public class Main {
         }
         while (inputChar != 'Q' && inputChar != 'q');
 
-
     }
-
 
 }
