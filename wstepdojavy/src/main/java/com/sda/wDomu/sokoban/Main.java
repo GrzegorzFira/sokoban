@@ -6,46 +6,66 @@ import java.util.concurrent.TimeUnit;
 public class Main {
 
 
-
     public static void main(String[] args) {
 
-        Game game = new Game(0);
-        game.findPropertiesOfTable();
+        Board board = new Board(0);
+        board.findPropertiesOfTable();
 
         char inputChar;
         Scanner scanner = new Scanner(System.in);
 
 
+        do {
+            DisplayTable.wyswietl(board.getLevelTab());
+            DisplayInfo.wyswietl(board.getLevelNumber(), board.getNumberOfMoves(), board.getNumberOfGoals());
 
-        do{
-            DisplayTable.wyswietl(game.getLevelTab());
-            DisplayInfo.wyswietl(game.getLevelNumber(), game.getNumberOfMoves(), game.getNumberOfGoals());
+            inputChar = scanner.next().charAt(0);
+            switch (inputChar) {
+                case 'd':
+                case 'D': {
+                    board.moveRight();
+                }
+                break;
+                case 'a':
+                case 'A': {
+                    board.moveLeft();
+                }
+                break;
 
-            inputChar=scanner.next().charAt(0);
-            game.move(inputChar);
+                case 'w':
+                case 'W': {
+                    board.moveUp();
+                }
+                break;
 
-            if(inputChar=='R'||inputChar=='r'){
-                game.setLevelTabByLevel(game.getLevelNumber());
-                game.findPropertiesOfTable();
+                case 's':
+                case 'S': {
+                    board.moveDown();
+                }
+                break;
             }
 
-            if(game.getNumberOfGoals()==0){
-                DisplayTable.wyswietl(game.getLevelTab());
-                DisplayInfo.wyswietl(game.getLevelNumber(), game.getNumberOfMoves(), game.getNumberOfGoals());
+
+            if (inputChar == 'R' || inputChar == 'r') {
+                board.setLevelTabByLevel(board.getLevelNumber());
+                board.findPropertiesOfTable();
+            }
+
+            if (board.getNumberOfGoals() == 0) {
+                DisplayTable.wyswietl(board.getLevelTab());
+                DisplayInfo.wyswietl(board.getLevelNumber(), board.getNumberOfMoves(), board.getNumberOfGoals());
                 TimeUnit.SECONDS.toSeconds(1);
                 System.out.println("NEXT LEVEL");
-                game.setLevelNumber(game.getLevelNumber()+1);
-                game.setLevelTabByLevel(game.getLevelNumber());
-                game.findPropertiesOfTable();}
+                board.setLevelNumber(board.getLevelNumber() + 1);
+                board.setLevelTabByLevel(board.getLevelNumber());
+                board.findPropertiesOfTable();
+            }
 
         }
-        while (inputChar!='Q'&&inputChar!='q');
-
+        while (inputChar != 'Q' && inputChar != 'q');
 
 
     }
-
-
 
 
 }

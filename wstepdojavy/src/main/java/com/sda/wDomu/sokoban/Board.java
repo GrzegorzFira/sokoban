@@ -1,6 +1,6 @@
 package com.sda.wDomu.sokoban;
 
-class Game {
+class Board {
 
     private int levelNumber;
     private int[][] levelTab;
@@ -29,7 +29,7 @@ class Game {
         this.levelTab = LevelTab.getTableByLevel(levelNumber);
     }
 
-     Game(int levelNumber) {
+     Board(int levelNumber) {
         this.levelNumber = levelNumber;
         this.levelTab = LevelTab.getTableByLevel(levelNumber);
         this.numberOfMoves = 0;
@@ -57,12 +57,9 @@ class Game {
 this.numberOfGoals = number;
         }
 
-     void move(char inputChar) {
-        levelTab[row][column]=0;
 
-                switch (inputChar) {
-            case 'd':
-            case 'D': {
+              void moveRight(){
+                  levelTab[row][column]=0;
                 if (levelTab[row][column + 1] == 0 || levelTab[row][column + 1] == 2) {
                     column++;numberOfMoves++;
                 } else if ((levelTab[row][column + 1] == 3 || levelTab[row][column + 1] == 5) && (levelTab[row][column + 2] == 0 || levelTab[row][column + 2] == 2)) {
@@ -72,12 +69,12 @@ this.numberOfGoals = number;
                     levelTab[row][column + 2] += 3;
                     if (levelTab[row][column + 2] == 5) {numberOfGoals++;}
                     column++;numberOfMoves++;
-                }
+                }levelTab[row][column]+=4;
             }
-            break;
 
-            case 'a':
-            case 'A': {
+
+            void moveLeft() {
+                levelTab[row][column]=0;
                 if (levelTab[row][column - 1] == 0 || levelTab[row][column - 1] == 2) {
                     column--;numberOfMoves++;
                 } else if ((levelTab[row][column - 1] == 3 || levelTab[row][column - 1] == 5) && (levelTab[row][column - 2] == 0 || levelTab[row][column - 2] == 2)) {
@@ -87,12 +84,11 @@ this.numberOfGoals = number;
                     levelTab[row][column - 2] += 3;
                     if (levelTab[row][column - 2] == 5) {numberOfGoals++;}
                     column--;numberOfMoves++;
-                }
+                }levelTab[row][column]+=4;
             }
-            break;
 
-            case 'w':
-            case 'W': {
+            void moveUp() {
+                levelTab[row][column]=0;
                 if (levelTab[row - 1][column] == 0 || levelTab[row - 1][column] == 2) {
                     row--;numberOfMoves++;
                 } else if ((levelTab[row - 1][column] == 3 || levelTab[row - 1][column] == 5) && (levelTab[row - 2][column] == 0 || levelTab[row - 2][column] == 2)) {
@@ -102,12 +98,10 @@ this.numberOfGoals = number;
                     levelTab[row - 2][column] += 3;
                     if (levelTab[row - 2][column] == 5) {numberOfGoals++;}
                     row--;numberOfMoves++;
-                }
+                }levelTab[row][column]+=4;
             }
-            break;
-
-            case 's':
-            case 'S': {
+           void moveDown() {
+               levelTab[row][column]=0;
                 if (levelTab[row + 1][column] == 0 || levelTab[row + 1][column] == 2) {
                     row++;numberOfMoves++;
                 } else if ((levelTab[row + 1][column] == 3 || levelTab[row + 1][column] == 5) && (levelTab[row + 2][column] == 0 || levelTab[row + 2][column] == 2)) {
@@ -117,16 +111,10 @@ this.numberOfGoals = number;
                     levelTab[row + 2][column] += 3;
                     if (levelTab[row + 2][column] == 5) {numberOfGoals++;}
                     row++;numberOfMoves++;
-                }
+                }levelTab[row][column]+=4;
             }
-            break;
-
-        }
-
-        System.out.println("You are row: "+ row +" column: "+ column +" ");
-        levelTab[row][column]+=4;
 
 
-    }
+
 
 }
