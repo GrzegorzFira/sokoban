@@ -58,7 +58,7 @@ this.numberOfGoals = number;
         }
 
      void move(char inputChar) {
-        levelTab[row][column]-=4;
+        levelTab[row][column]=0;
 
                 switch (inputChar) {
             case 'd':
