@@ -9,7 +9,7 @@ class Board {
     private int numberOfGoals;
     private int numberOfMoves;
 
-     int getLevelNumber() {
+    int getLevelNumber() {
         return levelNumber;
     }
 
@@ -17,104 +17,130 @@ class Board {
         return numberOfGoals;
     }
 
-     int getNumberOfMoves() {
+    int getNumberOfMoves() {
         return numberOfMoves;
     }
 
-     void setLevelNumber(int levelNumber) {
+    void setLevelNumber(int levelNumber) {
         this.levelNumber = levelNumber;
     }
 
-     void setLevelTabByLevel(int levelNumber) {
+    void setLevelTabByLevel(int levelNumber) {
         this.levelTab = LevelTab.getTableByLevel(levelNumber);
     }
 
-     Board(int levelNumber) {
+    Board(int levelNumber) {
         this.levelNumber = levelNumber;
         this.levelTab = LevelTab.getTableByLevel(levelNumber);
         this.numberOfMoves = 0;
     }
 
-     int[][] getLevelTab() {
+    int[][] getLevelTab() {
         return levelTab;
     }
 
 
-
-     void findPropertiesOfTable() {
+    void findPropertiesOfTable() {
         int number = 0;
         for (int i = 0; i < levelTab.length; i++) {
-            for (int j = 0; j <levelTab[0].length ; j++) {
+            for (int j = 0; j < levelTab[0].length; j++) {
                 if (levelTab[i][j] == 4) {
-                    this.row =i;
-                    this.column =j;
-                                      }
+                    this.row = i;
+                    this.column = j;
+                }
                 if (levelTab[i][j] == 2) {
                     number--;
                 }
             }
         }
-this.numberOfGoals = number;
+        this.numberOfGoals = number;
+    }
+
+
+    void moveRight() {
+        levelTab[row][column] = 0;
+        if (levelTab[row][column + 1] == 0 || levelTab[row][column + 1] == 2) {
+            column++;
+            numberOfMoves++;
+        } else if ((levelTab[row][column + 1] == 3 || levelTab[row][column + 1] == 5) && (levelTab[row][column + 2] == 0 || levelTab[row][column + 2] == 2)) {
+
+            levelTab[row][column + 1] -= 3;
+            if (levelTab[row][column + 1] == 2) {
+                numberOfGoals--;
+            }
+            levelTab[row][column + 2] += 3;
+            if (levelTab[row][column + 2] == 5) {
+                numberOfGoals++;
+            }
+            column++;
+            numberOfMoves++;
         }
+        levelTab[row][column] += 4;
+    }
 
 
-              void moveRight(){
-                  levelTab[row][column]=0;
-                if (levelTab[row][column + 1] == 0 || levelTab[row][column + 1] == 2) {
-                    column++;numberOfMoves++;
-                } else if ((levelTab[row][column + 1] == 3 || levelTab[row][column + 1] == 5) && (levelTab[row][column + 2] == 0 || levelTab[row][column + 2] == 2)) {
+    void moveLeft() {
+        levelTab[row][column] = 0;
+        if (levelTab[row][column - 1] == 0 || levelTab[row][column - 1] == 2) {
+            column--;
+            numberOfMoves++;
+        } else if ((levelTab[row][column - 1] == 3 || levelTab[row][column - 1] == 5) && (levelTab[row][column - 2] == 0 || levelTab[row][column - 2] == 2)) {
 
-                    levelTab[row][column + 1] -= 3;
-                    if (levelTab[row][column + 1] == 2) {numberOfGoals--;}
-                    levelTab[row][column + 2] += 3;
-                    if (levelTab[row][column + 2] == 5) {numberOfGoals++;}
-                    column++;numberOfMoves++;
-                }levelTab[row][column]+=4;
+            levelTab[row][column - 1] -= 3;
+            if (levelTab[row][column - 1] == 2) {
+                numberOfGoals--;
             }
-
-
-            void moveLeft() {
-                levelTab[row][column]=0;
-                if (levelTab[row][column - 1] == 0 || levelTab[row][column - 1] == 2) {
-                    column--;numberOfMoves++;
-                } else if ((levelTab[row][column - 1] == 3 || levelTab[row][column - 1] == 5) && (levelTab[row][column - 2] == 0 || levelTab[row][column - 2] == 2)) {
-
-                    levelTab[row][column - 1] -= 3;
-                    if (levelTab[row][column - 1] == 2) {numberOfGoals--;}
-                    levelTab[row][column - 2] += 3;
-                    if (levelTab[row][column - 2] == 5) {numberOfGoals++;}
-                    column--;numberOfMoves++;
-                }levelTab[row][column]+=4;
+            levelTab[row][column - 2] += 3;
+            if (levelTab[row][column - 2] == 5) {
+                numberOfGoals++;
             }
+            column--;
+            numberOfMoves++;
+        }
+        levelTab[row][column] += 4;
+    }
 
-            void moveUp() {
-                levelTab[row][column]=0;
-                if (levelTab[row - 1][column] == 0 || levelTab[row - 1][column] == 2) {
-                    row--;numberOfMoves++;
-                } else if ((levelTab[row - 1][column] == 3 || levelTab[row - 1][column] == 5) && (levelTab[row - 2][column] == 0 || levelTab[row - 2][column] == 2)) {
+    void moveUp() {
+        levelTab[row][column] = 0;
+        if (levelTab[row - 1][column] == 0 || levelTab[row - 1][column] == 2) {
+            row--;
+            numberOfMoves++;
+        } else if ((levelTab[row - 1][column] == 3 || levelTab[row - 1][column] == 5) && (levelTab[row - 2][column] == 0 || levelTab[row - 2][column] == 2)) {
 
-                    levelTab[row - 1][column] -= 3;
-                    if (levelTab[row - 1][column] == 2) {numberOfGoals--;}
-                    levelTab[row - 2][column] += 3;
-                    if (levelTab[row - 2][column] == 5) {numberOfGoals++;}
-                    row--;numberOfMoves++;
-                }levelTab[row][column]+=4;
+            levelTab[row - 1][column] -= 3;
+            if (levelTab[row - 1][column] == 2) {
+                numberOfGoals--;
             }
-           void moveDown() {
-               levelTab[row][column]=0;
-                if (levelTab[row + 1][column] == 0 || levelTab[row + 1][column] == 2) {
-                    row++;numberOfMoves++;
-                } else if ((levelTab[row + 1][column] == 3 || levelTab[row + 1][column] == 5) && (levelTab[row + 2][column] == 0 || levelTab[row + 2][column] == 2)) {
-
-                    levelTab[row + 1][column] -= 3;
-                    if (levelTab[row + 1][column] == 2) {numberOfGoals--;}
-                    levelTab[row + 2][column] += 3;
-                    if (levelTab[row + 2][column] == 5) {numberOfGoals++;}
-                    row++;numberOfMoves++;
-                }levelTab[row][column]+=4;
+            levelTab[row - 2][column] += 3;
+            if (levelTab[row - 2][column] == 5) {
+                numberOfGoals++;
             }
+            row--;
+            numberOfMoves++;
+        }
+        levelTab[row][column] += 4;
+    }
 
+    void moveDown() {
+        levelTab[row][column] = 0;
+        if (levelTab[row + 1][column] == 0 || levelTab[row + 1][column] == 2) {
+            row++;
+            numberOfMoves++;
+        } else if ((levelTab[row + 1][column] == 3 || levelTab[row + 1][column] == 5) && (levelTab[row + 2][column] == 0 || levelTab[row + 2][column] == 2)) {
 
+            levelTab[row + 1][column] -= 3;
+            if (levelTab[row + 1][column] == 2) {
+                numberOfGoals--;
+            }
+            levelTab[row + 2][column] += 3;
+            if (levelTab[row + 2][column] == 5) {
+                numberOfGoals++;
+            }
+            row++;
+            numberOfMoves++;
+        }
+        levelTab[row][column] += 4;
+    }
 
 
 }
