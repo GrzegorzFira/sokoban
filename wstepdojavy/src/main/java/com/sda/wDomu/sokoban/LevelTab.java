@@ -1,16 +1,32 @@
 package com.sda.wDomu.sokoban;
 
-import java.awt.*;
-import java.util.ArrayList;
 
- class LevelTab {
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+class LevelTab {
 
 
      static int[][] getTableByLevel(int level){
+/*        try {
+           System.out.println(Files.readAllLines(Paths.get("Table.txt")));
+        } catch (IOException e) {
+           e.printStackTrace();
+        }
+
+        String string=Files.readAllLines(Paths.get("Table.txt"));
+
+        int [][][] listOfTables={};
+
+        for(int i =0; i<1;i++){}*/
+
+
         if(0<=level&&level<listOfTables.length) return listOfTables[level];
         else return listOfTables[0];
     }
-
 
     private static  int[][] level00 = {
             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},

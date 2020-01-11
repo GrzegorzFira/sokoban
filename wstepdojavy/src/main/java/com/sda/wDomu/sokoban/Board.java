@@ -12,19 +12,15 @@ class Board {
     int getLevelNumber() {
         return levelNumber;
     }
-
     int getNumberOfGoals() {
         return numberOfGoals;
     }
-
     int getNumberOfMoves() {
         return numberOfMoves;
     }
-
     void setLevelNumber(int levelNumber) {
         this.levelNumber = levelNumber;
     }
-
     void setLevelTabByLevel(int levelNumber) {
         this.levelTab = LevelTab.getTableByLevel(levelNumber);
     }
@@ -40,6 +36,9 @@ class Board {
     }
 
     void displayTable() {
+        for(int i=0;i<100;i++){
+            System.out.println();
+        }
         for (int[] ints : levelTab) {
             for (int i = 0; i < levelTab[0].length; i++) {
                 System.out.print(" " + Symbol.getSymbolByNumber(ints[i]).getSymbolChar());
@@ -52,9 +51,9 @@ class Board {
         System.out.println("Level: "+levelNumber);
         System.out.println("Move: "+numberOfMoves+"");
         System.out.println("Goals: "+numberOfGoals+"\n");
-        System.out.println("Enter Q to quit");
-        System.out.println("Enter backspace key to return");
-        System.out.println("Enter W, A, S, D  to to move up, left, down and right, respectively");
+        System.out.println("Enter 'Q' to quit");
+       // System.out.println("Enter 'R' to return");
+        System.out.println("Enter 'W', 'A', 'S', 'D'  to to move up, left, down and right, respectively");
     }
 
     void findPropertiesOfTable() {
