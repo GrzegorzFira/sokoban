@@ -21,7 +21,6 @@ public class Main {
         System.out.println("Enter Q to quit");
         System.out.println("Enter backspace key to return");
         System.out.println("Enter W, A, S, D  to to move up, left, down and right, respectively");
-
     }
 
     public static void main(String[] args) {

@@ -63,7 +63,6 @@ class Board {
             column++;
             numberOfMoves++;
         } else if ((levelTab[row][column + 1] == 3 || levelTab[row][column + 1] == 5) && (levelTab[row][column + 2] == 0 || levelTab[row][column + 2] == 2)) {
-
             levelTab[row][column + 1] -= 3;
             if (levelTab[row][column + 1] == 2) {
                 numberOfGoals--;
@@ -85,7 +84,6 @@ class Board {
             column--;
             numberOfMoves++;
         } else if ((levelTab[row][column - 1] == 3 || levelTab[row][column - 1] == 5) && (levelTab[row][column - 2] == 0 || levelTab[row][column - 2] == 2)) {
-
             levelTab[row][column - 1] -= 3;
             if (levelTab[row][column - 1] == 2) {
                 numberOfGoals--;
@@ -106,7 +104,6 @@ class Board {
             row--;
             numberOfMoves++;
         } else if ((levelTab[row - 1][column] == 3 || levelTab[row - 1][column] == 5) && (levelTab[row - 2][column] == 0 || levelTab[row - 2][column] == 2)) {
-
             levelTab[row - 1][column] -= 3;
             if (levelTab[row - 1][column] == 2) {
                 numberOfGoals--;
@@ -127,7 +124,6 @@ class Board {
             row++;
             numberOfMoves++;
         } else if ((levelTab[row + 1][column] == 3 || levelTab[row + 1][column] == 5) && (levelTab[row + 2][column] == 0 || levelTab[row + 2][column] == 2)) {
-
             levelTab[row + 1][column] -= 3;
             if (levelTab[row + 1][column] == 2) {
                 numberOfGoals--;
